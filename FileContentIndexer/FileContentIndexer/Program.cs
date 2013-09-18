@@ -19,21 +19,6 @@ namespace FileContentIndexer
             CreateIndex();
             ReadArticles();
 
-            //while (true)
-            //{
-            //    Console.WriteLine("Enter a word");
-            //    var w = Console.ReadLine();
-            //    if (string.IsNullOrEmpty(w))
-            //    {
-            //        break;
-            //    }
-            //    var el = Index[w];
-            //    //ReadArticles(el.Item1, el.Item2);
-            //    //Console.WriteLine(GetBlock(el.Item1, el.Item2));
-            //    var wc = CardParserObsolete.ParseBlock(GetBlock(el.Item1, el.Item2));
-
-            //}
-
             while (true)
             {
                 Console.WriteLine("Enter a word");
@@ -42,36 +27,15 @@ namespace FileContentIndexer
                 {
                     break;
                 }
-                //var el = Index[w];
-                var els1 = Index.First(e => e.Key.StartsWith(w));
-                var newParserResult = RecursiveCardParser.DivideSiblingTags(GetBlock(els1.Value.Item1, els1.Value.Item2));
-                var result = RecursiveCardParser.ParseBlock(GetBlock(els1.Value.Item1, els1.Value.Item2));
-                var s = result.Aggregate(string.Empty, (current, wordCardValue) => current + wordCardValue.GetValues());
-                Console.WriteLine(s);
-                //var els = Index.Where(e => e.Key.StartsWith(w)).Take(10).Select(e => CardParserObsolete.ParseBlock(GetBlock(e.Value.Item1, e.Value.Item2)));
-                //foreach (var wordCard in els)
-                //{
-                //    Console.WriteLine(wordCard.Key);
-                //    foreach (var value in wordCard.Values)
-                //    {
-                //        Console.WriteLine("-->{0}", value);
-                //    }
-                //}
-                //ReadArticles(el.Item1, el.Item2);
+                var card = Index.FirstOrDefault(e => e.Key.StartsWith(w));
+                if (card.Key == null)
+                {
+                    Console.WriteLine("Word not found");
+                    continue;
+                }
+                var newParserResult = RecursiveCardParser.DivideSiblingTags(GetBlock(card.Value.Item1, card.Value.Item2));
+                Console.WriteLine("Parsed");
             }
-
-            //while (true)
-            //{
-            //    Console.WriteLine("Enter a char");
-            //    var w = Console.ReadKey();
-            //    var s = new string(w.KeyChar, 1);
-            //    if (string.IsNullOrEmpty(s))
-            //    {
-            //        return;
-            //    }
-            //    var el = Index.Where(e => e.Key.StartsWith(s)).Select(e => e);
-            //    Console.WriteLine("Found {0} items ", el.Count());
-            //}
         }
 
         static void CreateIndex()
@@ -154,29 +118,6 @@ namespace FileContentIndexer
                         //Console.WriteLine("/*****************/");
                     }
                 }
-            }
-        }
-
-        static void ReadArticles(long from, int howManyBytes)
-        {
-            using (var stream = new FileStream(FileName, FileMode.Open))
-            {
-                var indices = ArticlesIndices.ToArray();
-                var size = indices.Length;
-                var reader = new BinaryReader(stream);
-                Byte[] a;
-
-                stream.Position = from;
-                a = reader.ReadBytes(howManyBytes);
-                var l = Encoding.Unicode.GetString(a);
-                Console.WriteLine(l);
-                //Console.WriteLine("Bytes are: ");
-                //foreach (var singleByte in a)
-                //{
-                //    s
-                //}
-                //Console.WriteLine();
-                //Console.WriteLine("---------");
             }
         }
 
