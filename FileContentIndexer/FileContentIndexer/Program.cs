@@ -44,6 +44,7 @@ namespace FileContentIndexer
                 }
                 //var el = Index[w];
                 var els1 = Index.First(e => e.Key.StartsWith(w));
+                var newParserResult = RecursiveCardParser.DivideSiblingTags(GetBlock(els1.Value.Item1, els1.Value.Item2));
                 var result = RecursiveCardParser.ParseBlock(GetBlock(els1.Value.Item1, els1.Value.Item2));
                 var s = result.Aggregate(string.Empty, (current, wordCardValue) => current + wordCardValue.GetValues());
                 Console.WriteLine(s);
