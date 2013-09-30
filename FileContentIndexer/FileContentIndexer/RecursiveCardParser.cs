@@ -47,9 +47,11 @@ namespace FileContentIndexer
             throw new Exception("Missing matching closing bracket");
         }
 
-        public static List<object> DivideSiblingTags(string block)
+        public static List<TagContent> DivideSiblingTags(string block)
         {
-            var result = new List<object>();
+            var parsedContent = new List<TagContent>();
+            var result = new List<Tag>();
+
             var currentPosition = 0;
             while(true)
             {
@@ -58,7 +60,10 @@ namespace FileContentIndexer
                 if (openingTag == null)
                 {
                     // No tags found.
-                    //result.Add(block);
+                    if (!string.IsNullOrEmpty(block))
+                    {
+                        parsedContent.Add(new TagContent(block));    
+                    }
                     Console.Write(block);
                     break;
                 }
@@ -66,6 +71,7 @@ namespace FileContentIndexer
                 //result.Add(block.Substring(0, openingTag.StartsAt));
                 if (!string.IsNullOrWhiteSpace(block.Substring(0, openingTag.StartsAt)))
                 {
+                    parsedContent.Add(new TagContent(block.Substring(0, openingTag.StartsAt)));
                     Console.Write(block.Substring(0, openingTag.StartsAt));
                 }
                 TagPart closingTag;
@@ -101,40 +107,14 @@ namespace FileContentIndexer
                 
                 var tagContentRaw = block.Substring(tagOpeningEndsAt + 1, closingTag.StartsAt - tagOpeningEndsAt - 1);
                 var tagContent = DivideSiblingTags(tagContentRaw);
-                result.Add(new List<object>() {openingTag, closingTag, tagContent});
+                var tag = new Tag() {TagContent = tagContent, TagName = openingTag.PartValue};
+                //tagContent.TagName = openingTag.PartValue;
+                parsedContent.Add(new TagContent(tag));
+                //result.Add(new List<object>() {openingTag, closingTag, tagContent});
                 currentPosition = closingTag.PartValue.Length + closingTag.StartsAt + "[/]".Length;
             }
 
-            return result;
+            return parsedContent;
         }
-    }
-
-    /// <summary>
-    /// Tag part is an opening or closing part of a tag like [tag] or [/tag]
-    /// </summary>
-    public class TagPart
-    {
-        public int StartsAt { get; set; }
-
-        public string PartValue { get; set; }
-
-        public bool IsClosingPartOfTag { get; set; }
-
-        public TagPart()
-        {
-        }
-
-        public TagPart(string val, int partStart, bool isClosingTag)
-        {
-            StartsAt = partStart;
-            PartValue = val;
-            IsClosingPartOfTag = isClosingTag;
-        }
-
-    }
-
-    public class Tag
-    {
-        public string TagName { get; set; }
     }
 }

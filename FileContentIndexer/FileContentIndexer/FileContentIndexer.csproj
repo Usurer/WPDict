@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="RecursiveCardParser.cs" />
+    <Compile Include="Tags.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="data\dict.dsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
