@@ -1,0 +1,98 @@
+﻿Data about DSL file format is avaliable at
+http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/
+See also http://informationworker.ru/lingvo.en/dslcompiler/entrystructure.htm
+
+What shoul I do to create a proper parser.
+1.  Dictionary header - parse #NAME, #INDEX_LANGUAGE, #CONTENTS_LANGUAGE, #INCLUDE etc.
+
+2.  Tags are:
+    Use the [trn] and [/trn] tags to mark the translations zone. This zone will contain translations of the headword.
+    Use the [ex] and [/ex] tags to mark the examples zone. This zone will contain usage examples.
+    Use the [com] and [/com] tags to mark the comments zone. This zone will provide additional information about the translations.
+    Use the [!trs] and [/!trs] tags to mark text fragments that must not be indexed (i.e. fragments you wish to be excluded from full-text search).
+
+    To insert a sound in a DSL dictionary entry: Write the name of the sound file followed by the multimedia tags. Ex: [s]mysound.wav[/s].
+    In the DSL text of your card, write the name of the video file followed by [s] tags.  Ex: [s]movie.avi[/s].
+    To insert a link to a Web page: Write the address of the Web page followed by the [url], [/url] tags. E.g.: [url]http://www.lingvo.ru[/url].
+
+    Enclose the label in [p] and [/p] tags. In the example below, v. is label displayed in italics and in a different colour: [c][i][p]v.[/p][/i][/c]
+
+    WARN: http://informationworker.ru/lingvo.en/dslcompiler/features.htm mentiones label dictionaries.
+
+    Here is also a list of tags: http://informationworker.ru/lingvo.en/dslcompiler/dsl_commands.htm
+
+3.  One card may have several headwords. If you want a card to have several headwords, first type these headwords (each starting a new line), and then type the body text of the card.
+    You can use parentheses to mark an optional part of the headword and curved braces to mark an unsorted part of the headword.
+    You can use any special symbols (like ~ or ^) in the headword text, but you must put a backslash (\) before each of such symbols. To use a backslash itself in the headword text, you must put double backslash (\\).
+
+4.  An entry headword can have an unsorted part. The unsorted part serves to include in the headword certain linguistic information which helps to understand how to use the headword (i.e. what words the headword is usually used with, government model examples etc.) yet, if it were sorted, affects the position of the headword in the word list in an undesirable way.
+    The unsorted part is not displayed in the ABBYY Lingvo x3 word list and is not used for translation. This means that when you add an unsorted part to an entry headword you do not create a new headword, and so you cannot use the tilde to denote both the headword and the unsorted part you added.
+    The unsorted part is displayed on the screen only in the entry headword. You should use braces to select a part of the dictionary text as the unsorted part of an entry headword. Example:
+        {to }have
+            иметь
+    Additionally, braces can be used in the headword or the body of the card to mark superscript or subscript.
+        for example, CO{[sub]}2{[/sub]}-Laser
+
+5.  Tilde (http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/using-the-tilde/)
+     If you type a tilde (~) in any card part (for example, in a subentry header), this tilde will be replaced with the entry headword when displaying the card text or subentry card. 
+     NB: If there is more than one headword in a card, the first one will be used to replace the tilde.
+     A tilde used in the subentry text is replaced with the card, not subentry header.
+     If a card headword contains an unsorted part (or parts), any tilde used in the card text will be replaced with the longest sorted part of the entry headword.
+     A ^ sign typed before a tilde changes the case of the first letter of the word the tilde is to be replaced with – if the first letter were capital, it’ll become small.
+
+6. Optional parts of a headword:
+    http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/optional-part-of-an-entry-headword/
+    A card headword can have an optional section marked by brackets.
+    You can use parentheses to provide spelling variants for a word, or to show that a certain morphological feature present in the source language is irrelevant in the target language.
+        превращать(ся)
+            turn into
+    This is equivalent to the following:
+        превращать превращаться
+            turn into
+    However, in the first case “превращать(ся)” will be displayed as the headword of the card.
+
+7.  Subentries http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/subentry/
+    
+    A card (entry) may have a subentry. Subentries are usually used to list common expressions and phrases in which the headword is used. Like a card, a subentry has a headword and a body. When ABBYY Lingvo x3 displays a main card, only the headwords of its subentries are displayed in it. Subentries are highlighted in a different colour. When you click a headword of a subentry, the corresponding card is displayed. Headwords of subentries are displayed in the word list; clicking them will display the corresponding cards. When you select a word combination in an external application and press CTRL+C+C or CTRL+INSERT+INSERT, the corresponding subentry card (if any) will also be displayed. One card (entry) may have several subentries.
+    The headword of a subentry must start a new line, the first position in the line must be a space or tab, followed by @. The body of a subentry has the same structure as the body of a card, but must end with @ placed on the next line. The following example shows a card with two subentries, one of which refers to meaning 1), and the other to meaning 3):
+    Example 1: 
+        little
+           1) маленький
+           [m1][*]
+           @ little one
+           малыш
+           @
+           [/*][/m]
+           2) немного, мало
+           3) пустяк, мелочь
+           [m1][*]
+           @ little by little
+           мало-помалу, постепенно
+           @
+           [/*][/m]
+    The headword of a subentry headword may have an alternative and/or an unsorted part. These parts are only displayed in the mother card. The headword of a subentry displayed in the mother card is a hyperlink to the subentry card. Clicking this hyperlink will open the subentry card.
+    In ABBYY Lingvo x3 system dictionaries, all subentries are displayed only in full translation mode, as they are enclosed in [*] and [/*] tags. If you want your user dictionary to look like a ABBYY Lingvo x3 system dictionary, enclose subentries in [*] and [/*].
+    Example 2: 
+        little
+           1) маленький
+           [m1][*]    @ little finger
+           мизинец
+           @ little ways
+           маленькие, смешные слабости
+           @
+           [/*][/m]
+    Note. If a card contains several subentries in a row, as in example 2 above, the beginning of a new subentry serves as the end of the previous subentry (you can put only one @ sign to separate two subentries).
+
+8.  Links to Another Card http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/links-to-another-card/
+    A card or subentry (subcard) can contain a link to another card (for example, a synonym or antonym). To create a hyperlink, you should type one of the headwords of the card referenced to in the body of your card enclosing it in broken brackets. A word in broken brackets may be placed in any part of the card but in subentry headword; you aren’t obliged to put it in the beginning of a line. When it comes to displaying a card, a link isn’t marked with any specific sign but displayed in the same colour as subentry headword. When you click it another card with the word’s translation opens.
+    For example, the following card contains a link to the word “binary”:
+        data
+           данные, см. также <<binary>>
+
+9.  Comments: {{this is a comment}}
+
+10. Text Formatting http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/text-formatting/
+
+11. For examples of card see http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/sample-entries-in-dsl/
+
+12. Think about dictzip format usage.

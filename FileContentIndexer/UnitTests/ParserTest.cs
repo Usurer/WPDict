@@ -32,6 +32,16 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void ParseTagsTest()
+        {
+            var divisionResult = RecursiveCardParser.DivideSiblingTags(Arry);
+            var tag = divisionResult[1].Value as Tag;
+            Assert.IsNotNull(tag);
+            var parseRes = TagTypeParser.GetTagTypeFromName(tag.TagName);
+            Assert.AreNotEqual(parseRes, TagTypes.Undefined);
+        }
+
+        [TestMethod]
         public void DivideSiblingTagsTest()
         {
             var divisionResult = RecursiveCardParser.DivideSiblingTags(Arry);

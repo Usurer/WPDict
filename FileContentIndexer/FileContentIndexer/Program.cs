@@ -34,8 +34,31 @@ namespace FileContentIndexer
                     continue;
                 }
                 var newParserResult = RecursiveCardParser.DivideSiblingTags(GetBlock(card.Value.Item1, card.Value.Item2));
+                Console.WriteLine("");
+                Console.WriteLine(TagPrinter(newParserResult));
                 Console.WriteLine("Parsed");
             }
+        }
+
+        static string TagPrinter(TagContent tagContent)
+        {
+            var result = "";
+            if (tagContent.ContentType == TagContentTypes.Tag)
+            {
+                var tag = tagContent.Value as Tag;
+                result  = result + " " + string.Format("Tag: {0}{1}Value: {2}", tag.TagName, Environment.NewLine, TagPrinter(tag.TagContent));
+            }
+            return result;
+        }
+
+        static string TagPrinter(IEnumerable<TagContent> tagContent)
+        {
+            var result = "";
+            foreach (var content in tagContent)
+            {
+                result = result + TagPrinter(content);
+            }
+            return result;
         }
 
         static void CreateIndex()
