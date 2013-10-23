@@ -1,0 +1,19 @@
+﻿http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/text-formatting/
+
+The new DSL version features special text formatting tools called formatting tags. Any formatting tool has two commands: toggle on tag and toggle off tag. Depending on this, the text entered between these tags will be formatted in a certain manner.
+Any toggle on tags look like [a], where a is a formatting tool tag (comprising either on or two characters). The respective toggle off tag looks like [/a].
+Implemented are the following text formatting tools:
+
+    boldfaced text ([b] tag)
+    italics ([i] tag)
+    underlined text ([u] tag)
+    coloured text ([c] tag; available colours: Aliceblue, antiquewhite, aqua, aquamarine, azure, beige, bisque, blanchedalmond, blue, blueviolet, brown, burlywood, cadetblue, chartreuse, chocolate, coral, cornflowerblue, cornsilk, crimson, cyan, darkblue, darkcyan, darkgoldenrod, darkgray, darkgreen, darkkhaki, darkmagenta, darkolivegreen, darkorange, darkorchid, darkred, darksalmon, darkseagreen, darkslateblue, darkslategray, darkturquoise, darkviolet, deeppink, deepskyblue, dimgray, dodgerblue, firebrick, floralwhite, forestgreen, fuchsia, gainsboro, ghostwhite, gold, goldenrod, gray, green, greenyellow, honeydew, hotpink, indianred, indigo, ivory, khaki, lavender, lavenderblush, lawngreen, lemonchiffon, lightblue, lightcoral, lightcyan, lightgoldenrodyellow, lightgreen, lightgrey, lightpink, lightsalmon, lightseagreen, lightskyblue, lightslategray, lightsteelblue, lightyellow, lime, limegreen, linen, magenta, maroon, mediumaquamarine, mediumblue, mediumorchid, mediumpurple, mediumseagreen, mediumslateblue, mediumspringgreen, mediumturquoise, mediumvioletred, midnightblue, mintcream, mistyrose, moccasin, navajowhite, navy, oldlace, olive, olivedrab, orange, orangered, orchid, palegoldenrod, palegreen, paleturquoise, palevioletred, papayawhip, peachpuff, peru, pink, plum, powderblue, purple, red, rosybrown, royalblue, saddlebrown, salmon, sandybrown, seagreen, seashell, sienna, silver, skyblue, slateblue, slategray, snow, springgreen, steelblue, tan, teal, thistle, tomato, turquoise, violet, wheat, white, whitesmoke, yellow, yellowgreen, - colours supported by Microsoft Internet Explorer 4.0 or higher.
+
+A colour name is not enclosed in quotation marks. If a colour name is not specified,  the colour specified in ABBYY Lingvo x3 settings as the label colour is used, e.g.: [c],[c green]. If the tag is not used the text will be displayed in black. Examples and hyperlinks are exceptions to this rule. They have colours specified in the ABBYY Lingvo x3 settings.
+The following example makes “отпускная” displayed in italics, “цена” as boldfaced, and the overall card (“отпускная цена”) as underlined.
+
+    selling price
+        [u][i]отпускная[/i] [b]цена[/b][/u]
+
+Mind the fact that spaces before, after and in the middle of tags are present only if actually intended to be displayed. That means that you can format, if you want, only a part of the word (a single letter, the first and the last letters, etc.). If there is a space before and after a tag, only one space will be actually displayed.
+The formatting tags must not overlap. If you toggled one formatting tag before another, you must toggle it off after the latter.

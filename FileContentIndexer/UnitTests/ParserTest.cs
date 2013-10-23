@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using FileContentIndexer;
+using PhoneLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests

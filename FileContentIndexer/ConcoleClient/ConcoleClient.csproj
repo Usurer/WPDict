@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E265572B-BD50-41FE-876E-DCC48FC4B406}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4567D0A6-9FE0-4442-B3DD-DAC6CA7CDF2B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileContentIndexer</RootNamespace>
-    <AssemblyName>FileContentIndexer</AssemblyName>
+    <RootNamespace>ConcoleClient</RootNamespace>
+    <AssemblyName>ConcoleClient</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,24 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RecursiveCardParser.cs" />
-    <Compile Include="Tags.cs" />
-    <Compile Include="TagTypeParser.cs" />
-    <Compile Include="TagTypes.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="data\dict.dsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="docs\DSL parser info.txt" />
-    <Content Include="docs\DSL tags descriptions.txt" />
-    <Content Include="docs\DSL Text Formatting.txt" />
+    <ProjectReference Include="..\PhoneLib\PhoneLib.csproj">
+      <Project>{339AE915-44BE-4353-9EA7-9730174590E2}</Project>
+      <Name>PhoneLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

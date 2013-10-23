@@ -1,0 +1,42 @@
+﻿1.  http://informationworker.ru/lingvo.en/dslcompiler/dsl_commands.htm
+
+    [b], [/b] - boldfaced font
+    [i], [/i] - italics
+    [u], [/u] - underlined font
+    [c], [/c] - coloured (highlighted) font
+    [*], [/*]  - the text between these tags is only displayed in full translation mode (see)
+    [mN] - sets the left paragraph margin. N is the number of spaces which will be used for the left-hand margin. N can be within the range from 0 to 9. The corresponding closing tag of the paragraph is [/m]. and left card margin.
+    [trn], [/trn] - translations zone.
+    [ex], [/ex] - examples zone.
+    [com], [/com] - comments zone.
+    [s],[/s] - multimedia zone (used to add pictures or sound files into a dictionary entries ).
+    [url],[/url] - link to a Web page.
+    [!trs], [/!trs] - the text between these tags will not be indexed
+    [p], [/p] - labels (clicking a label displays its full text)
+    [lang][/lang] - the language of the word or phrase; use these tags to mark words in the card that are written in a language other than the target language. Words marked by [lang] tags will be indexed, and you will be able to find them when carrying out full-text searches, or translate them with a right-click. Parameters: language name or language ID, e.g. [lang id=1]. The name of the language must be enclosed in brackets, e.g. [lang name="Russian"]. See the list of supported DSL languages in the "Supported Languages" section.
+    [ref][/ref] - hyperlink to a card in the same dictionary (You can also use "<<" and ">>" to enclose the headword of the card to make a link).
+    [sub][/sub] - subscript
+    [sup][/sup] -  superscript
+
+2.  http://lingvo.helpmax.net/en/troubleshooting/dsl-compiler/dsl-tags/
+    
+    [b], [/b] – boldfaced font
+    [i], [/i] – italics
+    [u], [/u] – underlined font
+    [c], [/c] – coloured (highlighted) font
+    [*], [/*]  – the text between these tags is only displayed in full translation mode (see)
+    [m] – sets the left paragraph margin. N is the number of spaces which will be used for the left-hand margin. N must be within the range from 0 to 9. The corresponding closing tag of the paragraph is [/m]. and left card margin.
+    [trn], [/trn] – translations zone.
+    [ex], [/ex] – examples zone.
+    [com], [/com] – comments zone.
+    [s],[/s] – multimedia zone (used to add pictures or sound files into a dictionary entries ).
+    [url],[/url] – link to a Web page.
+    [!trs], [/!trs] – the text between these tags will not be indexed
+    [p], [/p] – labels (clicking a label displays its full text)
+    ['],[/'] – a stressed vowel in a word. You can change the colour of  stressed vowels on the Entry window view tab of the Options dialog box (Tools>Options…).
+    [lang][/lang] – the language of the word or phrase; these tags are used in cards to mark words that are written in a language other than the target language. Words marked by [lang] tags will be indexed, translated, you will be able to see the list of their grammatical forms, etc. The name of the language must be enclosed in quotation marks, e.g. [lang name="Russian"]. See the list of supported DSL languages in the “Supported Languages” section.
+    [ref][/ref] – hyperlink to a card in the same dictionary (You can also use “<<” and “>>” to enclose the headword of the card to make a link).
+        Note. When using the [ref] and [/ref] tags, make sure that the card you refer to actually exists, as DSL Compiler will not automatically check the validity of such references.
+    [sub][/sub] – subscript
+    [sup][/sup] -  superscript
+        Note. DSL does not allow embedding formatting commands of the same type.

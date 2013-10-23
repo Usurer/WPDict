@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhoneLib;
 
-namespace FileContentIndexer
+namespace ConcoleClient
 {
     class Program
     {
@@ -17,7 +18,6 @@ namespace FileContentIndexer
         {
             Console.OutputEncoding = Encoding.Unicode;
             CreateIndex();
-            ReadArticles();
 
             while (true)
             {
@@ -35,7 +35,7 @@ namespace FileContentIndexer
                 }
                 var newParserResult = RecursiveCardParser.DivideSiblingTags(GetBlock(card.Value.Item1, card.Value.Item2));
                 Console.WriteLine("");
-                Console.WriteLine(TagPrinter(newParserResult));
+                //Console.WriteLine(TagPrinter(newParserResult));
                 Console.WriteLine("Parsed");
             }
         }
@@ -46,7 +46,15 @@ namespace FileContentIndexer
             if (tagContent.ContentType == TagContentTypes.Tag)
             {
                 var tag = tagContent.Value as Tag;
-                result  = result + " " + string.Format("Tag: {0}{1}Value: {2}", tag.TagName, Environment.NewLine, TagPrinter(tag.TagContent));
+                result = result + " " + string.Format(
+                    "Tag: {0} Value: {2} {1}"
+                    , tag.GetTagType()
+                    , Environment.NewLine
+                    , TagPrinter(tag.TagContent));
+            }
+            else
+            {
+                result = result + " " + (tagContent.Value as string) + Environment.NewLine;
             }
             return result;
         }
@@ -73,20 +81,18 @@ namespace FileContentIndexer
                 var blockKey = string.Empty;
                 while (!reader.EndOfStream)
                 {
-                        var line = reader.ReadLine();
+                    var line = reader.ReadLine();
                     if (string.IsNullOrEmpty(block) && !line.StartsWith("#") && !string.IsNullOrEmpty(line))
                     {
                         blockKey = line;
                     }
                     block += line;
-                    linesInBlock++; 
+                    linesInBlock++;
                     if (string.IsNullOrEmpty(line))
                     {
                         var pos = Encoding.Unicode.GetBytes(block);
                         var tuple = new Tuple<long, int, string>(fileLength, pos.Length + linesInBlock * 2, blockKey);
                         ArticlesIndices.Add(tuple);
-                        //Console.WriteLine("Pos = {0}, length = {1}", tuple.Item1, tuple.Item2);
-                        //Console.WriteLine("---------Block end---------------");
                         block = string.Empty;
                         fileLength += tuple.Item2;
                         linesInBlock = 0;
@@ -96,13 +102,10 @@ namespace FileContentIndexer
                     {
                         var pos = Encoding.Unicode.GetBytes(block);
                         fileLengthTmp += pos.Length;
-                        //Console.WriteLine(line);
-                        //Console.WriteLine("Current pos bytes = {0}, line length bytes = {1}", fileLengthTmp, pos.Length);
-                        //Console.WriteLine("Line length symbols = {0}", line.Length);
                     }
                 }
 
-                
+
             }
 
             foreach (var articlesIndex in ArticlesIndices)
@@ -116,31 +119,7 @@ namespace FileContentIndexer
                     Console.WriteLine(e.Message);
                     throw;
                 }
-                
-            }
-        }
 
-        static void ReadArticles()
-        {
-            using (var stream = new FileStream(FileName, FileMode.Open))
-            {
-                var indices = ArticlesIndices.ToArray();
-                var size = indices.Length;
-                var reader = new BinaryReader(stream);
-                Byte[] a;
-
-                for (int i = 0; i < size; i++)
-                {
-                    if (i < size - 1)
-                    {
-                        stream.Position = 2 + indices[i].Item1;
-                        a = reader.ReadBytes(indices[i].Item2);
-                        var l = Encoding.Unicode.GetString(a);
-                        //Console.WriteLine("Reading from = {0}, bytes  = {1}", indices[i].Item1, indices[i].Item2);
-                        //Console.WriteLine(l);
-                        //Console.WriteLine("/*****************/");
-                    }
-                }
             }
         }
 

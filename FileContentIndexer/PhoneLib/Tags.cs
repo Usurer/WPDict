@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FileContentIndexer
+namespace PhoneLib
 {
     /// <summary>
     /// Tag part is an opening or closing part of a tag like [tag] or [/tag]

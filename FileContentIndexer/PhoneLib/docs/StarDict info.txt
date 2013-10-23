@@ -1,0 +1,57 @@
+﻿A helpful data taken from makedict util
+
+replace_table["[/m]"]="";
+#if 0
+	replace_table["[ref]"]="<kref>";
+	replace_table["[/ref]"]="</kref>";
+#endif
+	replace_table["[url]"]="<iref>";
+	replace_table["[/url]"]="</iref>";
+	replace_table["[!trs]"]="";
+	replace_table["[/!trs]"]="";
+	replace_table["[/lang]"]="";
+	replace_table["[*]"]="";
+	replace_table["[/*]"]="";
+	replace_table["{{"]="<!--";
+	replace_table["}}"]="-->";
+	replace_table["<<"]="<kref>";
+	replace_table[">>"]="</kref>";
+	replace_table["[s]"]="<rref>";
+	replace_table["[/s]"]="</rref>";
+	replace_table["[m]"]="";//handle errors in dsl
+	replace_table["[m1]"]=" ";
+	replace_table["[m2]"]="  ";
+	replace_table["[m3]"]="   ";
+	replace_table["[m4]"]="    ";
+	replace_table["[m5]"]="     ";
+	replace_table["[m6]"]="      ";
+	replace_table["[m7]"]="       ";
+	replace_table["[m8]"]="        ";
+	replace_table["[m9]"]="         ";
+	replace_table["[']"] = "<nu />'<nu />";
+	replace_table["[/']"] = "";
+	
+	taginfo_list.push_back(TagInfo("[b]", "[/b]", "<b>", "</b>",
+				       TagInfo::tB));
+	taginfo_list.push_back(TagInfo("[i]", "[/i]", "<i>", "</i>",
+				       TagInfo::tI));
+	taginfo_list.push_back(TagInfo("[t]", "[/t]", "<tr>", "</tr>",
+				       TagInfo::tTranscription));
+	taginfo_list.push_back(TagInfo("[com]", "[/com]", "<co>", "</co>",
+				       TagInfo::tComment));
+	taginfo_list.push_back(TagInfo("[c", "[/c]", "<c>", "</c>",
+				       TagInfo::tColor, true));
+	taginfo_list.push_back(TagInfo("[p]", "[/p]", "<abr>", "</abr>",
+				       TagInfo::tAbr));
+	taginfo_list.push_back(TagInfo("[sub]", "[/sub]", "<sub>", "</sub>",
+				       TagInfo::tSub));
+	taginfo_list.push_back(TagInfo("[sup]", "[/sup]", "<sup>", "</sup>",
+				       TagInfo::tSup));
+	taginfo_list.push_back(TagInfo("[trn]", "[/trn]", "<dtrn>", "</dtrn>",
+				       TagInfo::tDtrn));
+	taginfo_list.push_back(TagInfo("[ex]", "[/ex]", "<ex>", "</ex>",
+				       TagInfo::tExample));
+	taginfo_list.push_back(TagInfo("[u]", "[/u]", "<c>", "</c>",
+				       TagInfo::tColor));
+	taginfo_list.push_back(TagInfo("[ref", "[/ref]", "<kref>", "</kref>",
+				       TagInfo::tKref, true));
