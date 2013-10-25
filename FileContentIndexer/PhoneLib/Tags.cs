@@ -63,6 +63,9 @@ namespace PhoneLib
     {
         public TagContentTypes ContentType { get; set; }
 
+        /// <summary>
+        /// May be of String or Tag types
+        /// </summary>
         public object Value { get; set; }
 
         public TagContent(string stringValue)

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcoleClient", "ConcoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneLib", "PhoneLib\PhoneLib.csproj", "{339AE915-44BE-4353-9EA7-9730174590E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneGui_1", "PhoneGui_1\PhoneGui_1.csproj", "{9F02760A-7AF1-4228-892A-840CDB1FAC2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,12 @@ Global
 		{339AE915-44BE-4353-9EA7-9730174590E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{339AE915-44BE-4353-9EA7-9730174590E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{339AE915-44BE-4353-9EA7-9730174590E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F02760A-7AF1-4228-892A-840CDB1FAC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F02760A-7AF1-4228-892A-840CDB1FAC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F02760A-7AF1-4228-892A-840CDB1FAC2A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9F02760A-7AF1-4228-892A-840CDB1FAC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F02760A-7AF1-4228-892A-840CDB1FAC2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F02760A-7AF1-4228-892A-840CDB1FAC2A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

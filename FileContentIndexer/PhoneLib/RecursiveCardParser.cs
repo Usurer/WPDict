@@ -61,7 +61,7 @@ namespace PhoneLib
                     {
                         parsedContent.Add(new TagContent(block));    
                     }
-                    Console.Write(block);
+                    /*Console.Write(block);*/
                     break;
                 }
                 // Adding a part of the string without tags into a result.
@@ -69,7 +69,7 @@ namespace PhoneLib
                 if (!string.IsNullOrWhiteSpace(block.Substring(0, openingTag.StartsAt)))
                 {
                     parsedContent.Add(new TagContent(block.Substring(0, openingTag.StartsAt)));
-                    Console.Write(block.Substring(0, openingTag.StartsAt));
+                    /*Console.Write(block.Substring(0, openingTag.StartsAt));*/
                 }
                 TagPart closingTag;
                 var tagOpeningEndsAt = openingTag.PartValue.Length + openingTag.StartsAt + "]".Length;
