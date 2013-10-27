@@ -11,7 +11,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Loaded="OnAppLoaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -28,9 +28,11 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBox Name="txtInputBox" Height="72" HorizontalAlignment="Left" Margin="12,28,0,0" Text="TextBox" VerticalAlignment="Top" Width="438" BorderThickness="0" />
-            <Button Name="btnSearch" Content="Button" Height="72" HorizontalAlignment="Left" Margin="12,106,0,0" VerticalAlignment="Top" Width="160" Click="OnButtonClicked" />
-            <phone:WebBrowser Name="brsResult" HorizontalAlignment="Left" Margin="26,184,0,0" VerticalAlignment="Top" Height="402" Width="410" />
+            <TextBox Name="txtInputBox" Height="72" HorizontalAlignment="Left" Margin="12,28,0,0" Text="" VerticalAlignment="Top" Width="438" BorderThickness="0" GotFocus="QueryBoxFocused" />
+            <Button Name="btnSearch" Content="Try me" Height="72" HorizontalAlignment="Left" Margin="12,106,0,0" VerticalAlignment="Top" Width="160" Click="OnButtonClicked" />
+            <phone:WebBrowser Name="brsResult" HorizontalAlignment="Left" Margin="26,184,0,0" VerticalAlignment="Top" Height="342" Width="410" Background="Black" />
+            <TextBlock Height="41" HorizontalAlignment="Left" Margin="26,546,0,0" Name="txtMessages" Text="" VerticalAlignment="Top" Width="410" />
+            <Button Content="Index me" Height="72" HorizontalAlignment="Left" Margin="290,106,0,0" Name="btnIndex" VerticalAlignment="Top" Width="160" Click="OnIndexClicked" />
         </Grid>
     </Grid>
  

@@ -65,7 +65,7 @@ namespace PhoneLib
         public List<TagContent> GetCardAsTags(string wordPart, Stream stream = null)
         {
             var card = GetWordCard(wordPart);
-            return GetCardAsTags(card, stream);
+            return card == null ? null : GetCardAsTags(card, stream);
         }
 
         public List<TagContent> GetCardAsTags(WordCard card, Stream stream = null)

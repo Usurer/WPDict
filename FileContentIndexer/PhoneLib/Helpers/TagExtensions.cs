@@ -44,5 +44,39 @@ namespace PhoneLib.Helpers
             result = result + " " + ConvertToNoTagsString(content);
             return result;
         }
+
+        public static string ConvertToStyledStrings(this IEnumerable<TagContent> tagContent)
+        {
+            var result = string.Empty;
+            foreach (var content in tagContent)
+            {
+                if (content.ContentType == TagContentTypes.Tag)
+                {
+                    //result = result + ConvertToNoTagsString(content);
+                    var formatString = TagTypeParser.GetTagFormatString(content.Value as Tag);
+                    var formattedContent = string.Format(formatString, ConvertToStyledString(content));
+                    result = string.Format("{0}{1}", result, formattedContent);
+                }
+                else
+                {
+                    result = result + content.Value.ToString().ConvertExtendedAscii();
+                }
+            }
+            return result;
+        }
+
+        public static string ConvertToStyledString(this TagContent tagContent)
+        {
+            var result = string.Empty;
+            if (tagContent.ContentType == TagContentTypes.String)
+            {
+                return tagContent.Value.ToString().ConvertExtendedAscii();
+            }
+
+            var content = (tagContent.Value as Tag).TagContent;
+
+            result = result + " " + ConvertToStyledStrings(content);
+            return result;
+        }
     }
 }
