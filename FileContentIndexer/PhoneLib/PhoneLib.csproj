@@ -54,6 +54,7 @@
     <Compile Include="DAL\DictReaders\FileTextBlock.cs" />
     <Compile Include="DAL\DictReaders\WordCard.cs" />
     <Compile Include="DictionaryDataProvider.cs" />
+    <Compile Include="Helpers\DslToHtmlRegexpConverter.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Helpers\TagExtensions.cs" />

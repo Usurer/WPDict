@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
 using PhoneLib;
+using PhoneLib.DAL.DictReaders;
 using PhoneLib.Helpers;
 
 namespace PhoneGui_1
@@ -38,8 +39,15 @@ namespace PhoneGui_1
             brsResult.Background = new SolidColorBrush(Colors.Black);
             txtMessages.Text = string.Empty;
 
-            IndexStart += new EventHandler(OnIndexStart);
-            IndexEnd += new EventHandler(OnIndexEnd);
+            /*IndexStart += new EventHandler(OnIndexStart);
+            IndexEnd += new EventHandler(OnIndexEnd);*/
+
+            var encoding = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1251\">";
+            var css = "body {background-color: #000; color: #fff; } div {}";
+            var head = string.Format("<html><head>{0}<style>{1}</style></head><body>", encoding, css);
+            var bottom = "</body></html>";
+
+            brsResult.NavigateToString(string.Format("{0}{1}", head, bottom));
         }
 
         /* TODO: Now you'll get only one definition for words like Man and man. So instead of using First in index search, you'd better get all matches. */
@@ -53,8 +61,10 @@ namespace PhoneGui_1
             }
             var reply = string.Empty;
             /*var searchResult = DictionaryData.GetCardAsTags(query, DictStream).ConvertToNoTagsString();*/
-            var searchResult = DictionaryData.GetCardAsTags(query, DictStream);
-            reply = searchResult == null ? "Nothing was found" : searchResult.ConvertToStyledStrings();
+            //var searchResult = DictionaryData.GetCardAsTags(query, DictStream);
+            var searchResult = DictionaryData.GetCardAsHtmlString(query, DictStream);
+            //reply = searchResult == null ? "Nothing was found" : searchResult.ConvertToStyledStrings();
+            reply = string.IsNullOrEmpty(searchResult) ? "Nothing was found" : searchResult.ConvertExtendedAscii();
 
             var css = "body {background-color: #000; color: #fff; } div {}";
             css = css + ".italics { font-style: italic;}";
@@ -70,7 +80,9 @@ namespace PhoneGui_1
                 reply = reply.Substring(string.Format("{0}{1}{0}", "\n", query).Length);
             }
             var mainContent = string.Format("<div>{0}</div>", reply.TrimStart(query.ToCharArray()));
+            brsResult.Visibility = Visibility.Collapsed;
             brsResult.NavigateToString(string.Format("{0}{1}{2}", head, mainContent, bottom));
+            brsResult.Visibility = Visibility.Visible;
 
             IsTranslatedFlag = true;
         }
@@ -119,6 +131,7 @@ namespace PhoneGui_1
             btnSearch.IsEnabled = true;
 
             IsBusy = false;
+            txtMessages.Text = "Indexing is over";
 
             /*IndexStart.Invoke(this, new EventArgs());*/
         }
@@ -152,6 +165,12 @@ namespace PhoneGui_1
         {
             IsBusy = false;
             txtMessages.Text = string.Empty;
+        }
+
+        private void OnClearStorageClicked(object sender, RoutedEventArgs e)
+        {
+            new DictIndex().DeleteIndex();
+            txtMessages.Text = "Index cleared";
         }
     }
 }

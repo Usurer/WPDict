@@ -33,6 +33,7 @@
             <phone:WebBrowser Name="brsResult" HorizontalAlignment="Left" Margin="26,184,0,0" VerticalAlignment="Top" Height="342" Width="410" Background="Black" />
             <TextBlock Height="41" HorizontalAlignment="Left" Margin="26,546,0,0" Name="txtMessages" Text="" VerticalAlignment="Top" Width="410" />
             <Button Content="Index me" Height="72" HorizontalAlignment="Left" Margin="290,106,0,0" Name="btnIndex" VerticalAlignment="Top" Width="160" Click="OnIndexClicked" />
+            <Button Content="RM" Height="72" HorizontalAlignment="Left" Margin="178,106,0,0" Name="btnClearStorage" VerticalAlignment="Top" Width="106" Click="OnClearStorageClicked" />
         </Grid>
     </Grid>
  

@@ -24,7 +24,7 @@ namespace PhoneLib
         private DictIndex _index;
 
         // TODO: Read about proper Singleton architecture, moron!
-        private DictIndex Index
+        public DictIndex Index
         {
             get
             {
@@ -59,7 +59,10 @@ namespace PhoneLib
 
         public WordCard GetWordCard(string wordPart)
         {
-            return Index.GetWordCard(wordPart, CaseSensitiveSearch);
+            var time = DateTime.Now;
+            var result = Index.GetWordCard(wordPart, CaseSensitiveSearch);
+            var time2 = DateTime.Now - time;
+            return result;
         }
 
         public List<TagContent> GetCardAsTags(string wordPart, Stream stream = null)
@@ -77,6 +80,30 @@ namespace PhoneLib
 
             stream.Position = 0;
             return RecursiveCardParser.DivideSiblingTags(FileHelper.GetBlockFromStream(card.CardFileTextBlock, stream));
+        }
+
+        public string GetCardAsHtmlString(string wordPart, Stream stream = null)
+        {
+            var card = GetWordCard(wordPart);
+            return card == null ? null : GetCardAsHtmlString(card, stream);
+        }
+
+        public string GetCardAsHtmlString(WordCard card, Stream stream = null)
+        {
+            if (stream == null)
+            {
+                return DslToHtmlRegexpConverter.ConvertStringToHtml(FileHelper.GetBlockFromFile(card.CardFileTextBlock, FileName));
+            }
+
+            stream.Position = 0;
+            var time = DateTime.Now;
+            var block = FileHelper.GetBlockFromStream(card.CardFileTextBlock, stream);
+            var time2 = DateTime.Now;
+            var result =  DslToHtmlRegexpConverter.ConvertStringToHtml(block);
+            var time3 = DateTime.Now;
+            var deltaStream = time2 - time;
+            var deltaParse = time3 - time2;
+            return result;
         }
     }
 }

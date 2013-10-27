@@ -43,6 +43,11 @@ namespace PhoneLib.DAL.DictReaders
         public static DictIndex GetIndexFromStream(Stream stream)
         {
             var index = new DictIndex();
+            if (index.LoadIndex())
+            {
+                return index;
+            }
+
             var reader = new StreamReader(stream);
             var block = string.Empty;
             long fileLength = 0;
@@ -84,6 +89,8 @@ namespace PhoneLib.DAL.DictReaders
                     fileLengthTmp += pos.Length;
                 }
             }
+            
+            index.SaveIndex();
             return index;
         }
     }
